@@ -23,3 +23,29 @@ console.log('Server running');
 11. Run `npm start`
 12. Marvel at the console output
 13. COMMIT
+14. Replace code in `server.js` with
+```
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+const router = express.Router();
+router.use((req, res, next) => {
+    console.log('Request made - logging from middleware');
+    next();
+});
+router.get('/', (req, res) => {
+    res.json({ message: 'Server running' });
+});
+app.use('/api', router);
+app.listen(8080);
+```
+15. `npm start`
+16. Download postman.
+17. Create new collection with name of your choosing.
+18. Add a new GET request hitting the url `http://localhost:8080/api`
+19. Click send.
+20. Marvel at your server response.
+21. Export your request collection to your repo.
+22. COMMIT
