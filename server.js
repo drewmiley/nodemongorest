@@ -5,6 +5,7 @@ const UserSchema = new Schema({
     name: String
 });
 const User = mongoose.model('User', UserSchema);
+const fetch = require('node-fetch');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -70,6 +71,13 @@ router.route('/users/:id')
             }
             res.json({ message: 'User deleted' });
         });
+    });
+router.route('/randomusers')
+    .get(async (req, res) => {
+        const endpointResponse = await fetch('https://jsonplaceholder.typicode.com/users');
+        const data = await endpointResponse.json();
+        const users = data.map(user => user.name);
+        res.json(users);
     });
 app.use('/api', router);
 app.listen(8080);

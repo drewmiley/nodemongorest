@@ -138,3 +138,23 @@ router.route('/users/:id')
 41. Try it out, and marvel.
 42. Export your request collection to your repo.
 43. COMMIT
+44. `npm install node-fetch`
+45. In `server.js`, add
+```
+const fetch = require('node-fetch');
+```
+46. In `server.js`, add
+```
+router.route('/randomusers')
+    .get(async (req, res) => {
+        const endpointResponse = await fetch('https://jsonplaceholder.typicode.com/users');
+        const data = await endpointResponse.json();
+        const users = data.map(user => user.name);
+        res.json(users);
+    });
+```
+47. Add a new GET request hitting the url `http://localhost:8080/api/randomusers`
+48. Try it out, and marvel.
+49. Export your request collection to your repo.
+50. COMMIT
+51. Congratulations on reaching the end of this tutorial!
