@@ -49,3 +49,14 @@ app.listen(8080);
 20. Marvel at your server response.
 21. Export your request collection to your repo.
 22. COMMIT
+23. Install mongo
+24. `mongod`
+25. `npm install mongoose`
+26. In `server.js`, at the top, add
+```
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+```
+27. `npm start`
+28. Marvel at your mongo connection.
+29. COMMIT

@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
