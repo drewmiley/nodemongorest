@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
+const Schema = mongoose.Schema;
+const UserSchema = new Schema({
+    name: String
+});
+const User = mongoose.model('User', UserSchema);
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -13,5 +18,24 @@ router.use((req, res, next) => {
 router.get('/', (req, res) => {
     res.json({ message: 'Server running' });
 });
+router.route('/users')
+    .post((req, res) => {
+        let user = new User();
+        user.name = req.body.name;
+        user.save(err => {
+            if (err) {
+                res.send(err);
+            }
+            res.json({ message: 'User created!' });
+        });
+    })
+    .get((req, res) => {
+        User.find((err, users) => {
+            if (err) {
+                res.send(err);
+            }
+            res.json(users);
+        });
+    });
 app.use('/api', router);
 app.listen(8080);

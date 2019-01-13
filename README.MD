@@ -60,3 +60,38 @@ mongoose.connect('mongodb://localhost/test');
 27. `npm start`
 28. Marvel at your mongo connection.
 29. COMMIT
+30. In `server.js`, add
+```
+const Schema = mongoose.Schema;
+const UserSchema = new Schema({
+    name: String
+});
+const User = mongoose.model('User', UserSchema);
+```
+31. In `server.js`, add
+```
+router.route('/users')
+    .post((req, res) => {
+        let user = new User();
+        user.name = req.body.name;
+        user.save(err => {
+            if (err) {
+                res.send(err);
+            }
+            res.json({ message: 'User created!' });
+        });
+    })
+    .get((req, res) => {
+        User.find((err, users) => {
+            if (err) {
+                res.send(err);
+            }
+            res.json(users);
+        });
+    });
+```
+32. Add a new GET request hitting the url `http://localhost:8080/api/users`
+33. Add a new POST request hitting the url `http://localhost:8080/api/users` with a request body with name property selecting `x-www-form-urlencoded` option.
+34. Try it out, and marvel.
+35. Export your request collection to your repo.
+36. COMMIT
