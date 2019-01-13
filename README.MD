@@ -95,3 +95,46 @@ router.route('/users')
 34. Try it out, and marvel.
 35. Export your request collection to your repo.
 36. COMMIT
+37. In `server.js`, add
+```
+router.route('/users/:id')
+        .get((req, res) => {
+            User.findById(req.params.id, (err, user) => {
+                if (err) {
+                    res.send(err);
+                }
+                res.json(user);
+            });
+        })
+    .put((req, res) => {
+        User.findById(req.params.id, (err, user) => {
+            if (err) {
+                res.send(err);
+            }
+            user.name = req.body.name;
+            user.save(err => {
+                if (err) {
+                    res.send(err);
+                }
+                res.json({ message: 'User updated!' });
+            });
+
+        });
+    })
+    .delete((req, res) => {
+        User.remove({
+            _id: req.params.id
+        }, (err, user) => {
+            if (err) {
+                res.send(err);
+            }
+            res.json({ message: 'User deleted' });
+        });
+    });
+```
+38. Add a new GET request hitting the url `http://localhost:8080/api/users/:id`
+39. Add a new PUT request hitting the url `http://localhost:8080/api/users/:id` with a request body with name property selecting `x-www-form-urlencoded` option.
+40. Add a new DELETE request hitting the url `http://localhost:8080/api/users/:id`
+41. Try it out, and marvel.
+42. Export your request collection to your repo.
+43. COMMIT
