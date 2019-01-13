@@ -38,14 +38,14 @@ router.route('/users')
         });
     });
 router.route('/users/:id')
-        .get((req, res) => {
-            User.findById(req.params.id, (err, user) => {
-                if (err) {
-                    res.send(err);
-                }
-                res.json(user);
-            });
-        })
+    .get((req, res) => {
+        User.findById(req.params.id, (err, user) => {
+            if (err) {
+                res.send(err);
+            }
+            res.json(user);
+        });
+    })
     .put((req, res) => {
         User.findById(req.params.id, (err, user) => {
             if (err) {
