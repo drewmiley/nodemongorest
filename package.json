@@ -1,0 +1,19 @@
+{
+  "name": "nodemongorest",
+  "version": "1.0.0",
+  "description": "Node server, mongo database, REST service.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drewmiley/nodemongorest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drewmiley/nodemongorest/issues"
+  },
+  "homepage": "https://github.com/drewmiley/nodemongorest#readme"
+}
